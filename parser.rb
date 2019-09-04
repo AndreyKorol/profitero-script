@@ -43,13 +43,13 @@ class Parser
 
   def csv_rows_from(page)
     rows = []
-    name = page.xpath(NAME_XPATH).text.gsub(NAME_REGEXP).first.strip.capitalize
+    name = page.xpath(NAME_XPATH).text.match(NAME_REGEXP)[0].strip.capitalize
     img = page.xpath(IMG_XPATH).attribute('src').value
     items = page.xpath(ITEMS_XPATH)
 
     items.each do |item|
-      option = item.xpath(OPTION_XPATH).text
-      price = item.xpath(PRICE_XPATH).text.gsub(PRICE_REGEXP).first
+      option = item.xpath(OPTION_XPATH).text.gsub('.', '')
+      price = item.xpath(PRICE_XPATH).text.match(PRICE_REGEXP)[0]
 
       rows << [name + ' - ' + option, price, img]
     end
