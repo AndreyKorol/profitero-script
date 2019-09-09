@@ -35,8 +35,9 @@ class Parser
 
       puts 'Writing data...'
       pages.each do |page|
-        csv_rows_from(page).each { |row| csv << row }
         progressbar.increment
+        next if page.nil?
+        csv_rows_from(page).each { |row| csv << row }
       end
     end
   end
@@ -61,7 +62,7 @@ class Parser
       Thread.new do
         requests.map do |curl|
           curl.perform
-          Nokogiri::HTML(curl.body_str)
+          Nokogiri::HTML(curl.body_str) if curl.response_code == 200
         end
       end
     end
@@ -80,7 +81,6 @@ class Parser
         product.xpath(PRODUCT_LINK_XPATH).attribute('href').value
       end
     end
-
     @product_urls = product_urls.flatten!
   end
 
