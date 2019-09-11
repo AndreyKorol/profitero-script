@@ -81,7 +81,7 @@ class Parser
         product.xpath(PRODUCT_LINK_XPATH).attribute('href').value
       end
     end
-    @product_urls = product_urls.flatten!
+    product_urls.flatten!
   end
 
   def sliced_requests_by(slice_count)
