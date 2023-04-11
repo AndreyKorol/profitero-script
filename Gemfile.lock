@@ -2,16 +2,18 @@ GEM
   remote: https://rubygems.org/
   specs:
     curb (0.9.10)
-    mini_portile2 (2.4.0)
-    nokogiri (1.10.4)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.14.3-x86_64-linux)
+      racc (~> 1.4)
+    racc (1.6.2)
+    ruby-progressbar (1.13.0)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   curb
   nokogiri
+  ruby-progressbar
 
 BUNDLED WITH
    2.0.2
